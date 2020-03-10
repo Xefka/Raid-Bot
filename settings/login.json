@@ -1,5 +1,5 @@
 {
-    "environ" : false,
-    "token" : "NjAzMT*****",
-    "bot" : false
+    "environ" : true,
+    "token" : false,
+    "bot" : true
 }
