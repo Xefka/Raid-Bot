@@ -2,7 +2,9 @@
 from discord.ext import commands
 import discord
 import os
+import aiohttp
 import sys
+import requests
 import asyncio
 import datetime
 
@@ -53,6 +55,28 @@ class owner(commands.Cog):
             await ctx.send(f'**`ERROR:`** { type(e).__name__ } - { e }')
         else:
             await ctx.send(f'**`SUCCESS:`** bot status changed to { bot_status }')
+
+    @commands.command(name='rename', hidden=True)
+    @commands.is_owner()
+    async def rename(self, ctx, *, name):
+        await self.bot.user.edit(username=name)
+
+    @commands.command(name='avatar', hidden=True)
+    @commands.is_owner()
+    async def avatar(self, ctx, url: str = None):
+        
+        if url is None:
+            try:
+                url = ctx.message.attachments[0]
+            except IndexError:
+                return await ctx.send('You did not give me any image whatsoever.')
+
+        async with aiohttp.ClientSession() as session:
+            r = await session.get(url=url)
+            data = await r.read()
+            await self.bot.user.edit(avatar=data)
+            r.close()
+        await ctx.send('Changed Avatar!')
 
     """ Restart Bot """
     @commands.command(name="logout", description="Kills bot instantly", aliases=['kill'])
