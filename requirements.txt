@@ -1,4 +1,5 @@
 discord
 asyncio
+aiohttp
 datetime
 json
