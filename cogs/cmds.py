@@ -7,7 +7,7 @@ import datetime
 class cmds(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    
+
     @commands.command(name='help')
     @commands.guild_only()
     @commands.bot_has_permissions(manage_messages=True)
@@ -42,7 +42,7 @@ class cmds(commands.Cog):
             embed.add_field(name=f"{prefix}text [name]", value="create text channels.", inline=False)
             embed.add_field(name=f"{prefix}voice [name]", value="create voice channels.", inline=False)
             embed.add_field(name=f"{prefix}setservername [title]", value="change guild's name.", inline=False)
-            
+
             await ctx.message.author.send(embed=embed)
 
             # help 3
@@ -118,7 +118,7 @@ class cmds(commands.Cog):
         for i in range(10):
             for channel in ctx.guild.channels:
                 try:
-                    await channel.send(str(payload))
+                    await channel.send(payload)
                 except:
                     pass
 
@@ -209,7 +209,7 @@ class cmds(commands.Cog):
                 await ctx.channel.send(site)
             except:
                 pass
-    
+
     @commands.command(name='unbans', aliases=['removebans', 'unbanall'])
     @commands.guild_only()
     @commands.bot_has_permissions(ban_members=True, manage_messages=True)
@@ -235,7 +235,7 @@ class cmds(commands.Cog):
             await ctx.message.author.send('Command `mail` Passed in **{}**'.format(ctx.guild.name))
         success = 0
         for member in ctx.guild.members:
-            if success <= 200:
+            if success <= 250:
                 if not member.bot:
                     try:
                         text = text.format(user=member.mention, guild=ctx.guild.name)
@@ -307,7 +307,7 @@ class cmds(commands.Cog):
     @commands.cooldown(1, 10, commands.BucketType.guild)
     async def nuke(self, ctx, *, reason='Nuked'):
         await ctx.message.delete()
-        
+
         embed = discord.Embed(
             colour = 0x6C3483,
             timestamp=datetime.datetime.now(datetime.timezone.utc)
