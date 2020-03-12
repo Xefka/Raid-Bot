@@ -33,9 +33,9 @@ async def on_resumed():
 
 
 extensions = [
-#    'cogs.events',
+    'cogs.events'
 #    'cogs.auto'
-    'cogs.owner'
+#    'cogs.owner'
 #    'cogs.cmds'
 ]
 
