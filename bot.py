@@ -65,15 +65,9 @@ for file in files:
         fh.close()
         print(f"[+] File {file} has been Successfully Created.")
 
-# run
-with open('settings/login.json', 'r') as login:
-    datastore = json.load(login)
-    # is bot
-    isbot = datastore['bot']
-    
-    if datastore['environ'] == True:
-        client.run(os.environ['DISCORD_TOKEN'], bot=isbot)
-    else:
-        if datastore['token'] != False:
-            client.run(datastore['token'], bot=isbot)
+login =  open('settings/login.json', 'r')
+datastore = json.load(login)
+isbot = datastore['bot']
 
+# run
+client.run(os.environ['DISCORD_TOKEN'], bot=isbot)
