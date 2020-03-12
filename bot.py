@@ -23,12 +23,9 @@ client.remove_command("help")
 async def on_ready():
     print(client.user.name + ' has connected to Discord!')
     print('ID : [' + str(client.user.id) + ']')
-    try:
-        with open('logs/log.txt', 'a') as f:
-            time = datetime.datetime.now()
-            f.write(f'[log] {time} - {client.user.name} - {client.user.id} \n')
-    except:
-        pass
+    with open('logs/log.txt', 'a') as f:
+        time = datetime.datetime.now()
+        f.write(f'[log] {time} - {client.user.name} - {client.user.id} \n')
 
 @client.event
 async def on_resumed():
@@ -42,32 +39,9 @@ extensions = [
     'cogs.cmds'
 ]
 
-files = [
-    'settings/login.json',
-    'settings/style.json',
-    'logs/log.txt'
-]
 if __name__ == "__main__":
     for ext in extensions:
         client.load_extension(ext)
-# check files
-for file in files:
-    if os.path.isfile(file) == False:
-        if "/" in file:
-            fdir = file.split("/")
-            for d in fdir:
-                if "." in d:
-                    break
-                os.mkdir(fdir[0])
-            
-        fh = open (file, "w")
-        fh.write("{}")
-        fh.close()
-        print(f"[+] File {file} has been Successfully Created.")
-
-login =  open('settings/login.json', 'r')
-datastore = json.load(login)
-isbot = datastore['bot']
 
 # run
-client.run(os.environ['DISCORD_TOKEN'], bot=isbot)
+client.run(os.environ['DISCORD_TOKEN'])
