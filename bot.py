@@ -23,10 +23,12 @@ client.remove_command("help")
 async def on_ready():
     print(client.user.name + ' has connected to Discord!')
     print('ID : [' + str(client.user.id) + ']')
-    with open('logs/log.txt', 'a') as f:
-        time = datetime.datetime.now()
-        f.write(f'[log] {time} - {client.user.name} - {client.user.id} \n')
-
+    try:
+        with open('logs/log.txt', 'a') as f:
+            time = datetime.datetime.now()
+            f.write(f'[log] {time} - {client.user.name} - {client.user.id} \n')
+    except:
+        pass
 
 @client.event
 async def on_resumed():
@@ -66,7 +68,7 @@ for file in files:
 with open('settings/login.json', 'r') as login:
     datastore = json.load(login)
     if datastore['environ'] == True:
-        token = datastore['environ']
+        token = os.environ['DISCORD_TOKEN']
     if datastore['token'] != False:
         token = datastore['token']
     # is bot
