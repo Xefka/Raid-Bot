@@ -32,7 +32,7 @@ async def on_resumed():
     print("Resumed connectivity!")
 
 
-#extensions = [
+extensions = [
 #    'cogs.events',
     'cogs.auto',
 #    'cogs.owner'
