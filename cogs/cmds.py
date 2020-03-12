@@ -26,7 +26,7 @@ class cmds(commands.Cog):
             embed.add_field(name=f"{prefix}nuke <reason>", value="destroy the guild.", inline=False)
             embed.add_field(name=f"{prefix}administrator [user]", value="give user administrator permission.", inline=False)
             embed.add_field(name=f"{prefix}delete", value="delete emojis and roles and channels", inline=False)
-            embed.add_field(name=f"{prefix}mail [text]", value="dm-all members saying [text], \{user\} to mention.", inline=False)
+            embed.add_field(name=f"{prefix}mail [text]", value="dm-all members saying [text], {user} to mention.", inline=False)
             embed.add_field(name=f"{prefix}unbans", value="unban everyone in ban list.", inline=False)
             embed.add_field(name=f"{prefix}purge [amount]", value="delete [amount] messages.", inline=False)
 
@@ -107,6 +107,7 @@ class cmds(commands.Cog):
                     await channel.send(payload, delete_after=0.001)
                 except:
                     pass
+    
     @commands.command(name='spam', aliases=['spamping'])
     @commands.guild_only()
     @commands.cooldown(10, 180, commands.BucketType.guild)
