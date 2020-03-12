@@ -17,7 +17,7 @@ def get_prefix(bot, message):
 
 client = commands.Bot(command_prefix = get_prefix)
 
-client.remove_command("help")
+# client.remove_command("help")
 
 @client.event
 async def on_ready():
@@ -32,16 +32,16 @@ async def on_resumed():
     print("Resumed connectivity!")
 
 
-extensions = [
-    'cogs.events',
-    'cogs.auto',
-    'cogs.owner',
-    'cogs.cmds'
-]
+#extensions = [
+#    'cogs.events',
+#    'cogs.auto',
+#    'cogs.owner',
+#    'cogs.cmds'
+#]
 
-if __name__ == "__main__":
-    for ext in extensions:
-        client.load_extension(ext)
+#if __name__ == "__main__":
+#    for ext in extensions:
+#        client.load_extension(ext)
 
 # run
 client.run(os.environ['DISCORD_TOKEN'])
