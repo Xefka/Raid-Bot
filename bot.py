@@ -35,13 +35,13 @@ async def on_resumed():
 #extensions = [
 #    'cogs.events',
 #    'cogs.auto',
-#    'cogs.owner',
+    'cogs.owner'
 #    'cogs.cmds'
-#]
+]
 
-#if __name__ == "__main__":
-#    for ext in extensions:
-#        client.load_extension(ext)
+if __name__ == "__main__":
+    for ext in extensions:
+        client.load_extension(ext)
 
 # run
 client.run(os.environ['DISCORD_TOKEN'])
