@@ -4,7 +4,6 @@ import discord
 import os
 import aiohttp
 import sys
-import requests
 import asyncio
 import datetime
 
