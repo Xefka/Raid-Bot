@@ -1,4 +1,5 @@
 import discord
+import asyncio
 from discord.ext import commands
 
 class cmds(commands.Cog):
@@ -6,53 +7,53 @@ class cmds(commands.Cog):
         self.bot = bot
 
 
-#     @commands.command(name='help')
-#     @commands.bot_has_permissions(manage_messages=True)
-#     @commands.cooldown(1, 15, commands.BucketType.guild)
-#     async def help(self, ctx):
-#         await ctx.message.delete()
+    @commands.command(name='help')
+    @commands.bot_has_permissions(manage_messages=True)
+    @commands.cooldown(1, 15, commands.BucketType.guild)
+    async def help(self, ctx):
+        await ctx.message.delete()
 
-#         prefix = ctx.prefix
+        prefix = ctx.prefix
 
-#         # help 1
-#         embed = discord.Embed(colour = 0x9B59B6, description="""Welcome to the commands page! Here you will be able to view every single command you have access to.\n\t** **\n""")
-#         embed.set_thumbnail(url=self.bot.user.avatar_url)
-#         embed.set_author(name='List Of Commands​',icon_url=ctx.author.avatar_url)
-#         embed.add_field(name=f"{prefix}help", value="Show this message.", inline=False)
-#         embed.add_field(name=f"{prefix}nuke <reason>", value="destroy the guild.", inline=False)
-#         embed.add_field(name=f"{prefix}administrator [user]", value="give user administrator permission.", inline=False)
-#         embed.add_field(name=f"{prefix}delete", value="delete emojis and roles and channels", inline=False)
-#         embed.add_field(name=f"{prefix}mail [text]", value="dm-all members saying [text], \{user} to mention.", inline=False)
-#         embed.add_field(name=f"{prefix}unbans", value="unban everyone in ban list.", inline=False)
-#         embed.add_field(name=f"{prefix}purge [amount]", value="delete [amount] messages.", inline=False)
+        # help 1
+        embed = discord.Embed(colour = 0x9B59B6, description="""Welcome to the commands page! Here you will be able to view every single command you have access to.\n\t** **\n""")
+        embed.set_thumbnail(url=self.bot.user.avatar_url)
+        embed.set_author(name='List Of Commands​',icon_url=ctx.author.avatar_url)
+        embed.add_field(name=f"{prefix}help", value="Show this message.", inline=False)
+        embed.add_field(name=f"{prefix}nuke <reason>", value="destroy the guild.", inline=False)
+        embed.add_field(name=f"{prefix}administrator [user]", value="give user administrator permission.", inline=False)
+        embed.add_field(name=f"{prefix}delete", value="delete emojis and roles and channels", inline=False)
+        embed.add_field(name=f"{prefix}mail [text]", value="dm-all members saying [text], \{user} to mention.", inline=False)
+        embed.add_field(name=f"{prefix}unbans", value="unban everyone in ban list.", inline=False)
+        embed.add_field(name=f"{prefix}purge [amount]", value="delete [amount] messages.", inline=False)
 
-#         await ctx.message.author.send(embed=embed)
+        await ctx.message.author.send(embed=embed)
 
-#         # help 2
-#         embed = discord.Embed(colour = 0x1BBFB8, description='Welcome to the Spam commands page! here you will be able to view every single command you have access to.')
-#         embed.set_author(name='Spam Commands​',icon_url=ctx.author.avatar_url)
-#         embed.add_field(name=f"{prefix}ghostspam [text]", value="spam saying [text] auto delete message.", inline=False)
-#         embed.add_field(name=f"{prefix}crashusers [website]", value="spam [website] that's will crashusers.", inline=False)
-#         embed.add_field(name=f"{prefix}spam [text]", value="spam saying [text].", inline=False)
-#         embed.add_field(name=f"{prefix}spamuser [text]", value="spam user dms saying [text].", inline=False)
-#         embed.add_field(name=f"{prefix}text [name]", value="create text channels.", inline=False)
-#         embed.add_field(name=f"{prefix}voice [name]", value="create voice channels.", inline=False)
-#         embed.add_field(name=f"{prefix}setservername [title]", value="change guild's name.", inline=False)
+        # help 2
+        embed = discord.Embed(colour = 0x1BBFB8, description='Welcome to the Spam commands page! here you will be able to view every single command you have access to.')
+        embed.set_author(name='Spam Commands​',icon_url=ctx.author.avatar_url)
+        embed.add_field(name=f"{prefix}ghostspam [text]", value="spam saying [text] auto delete message.", inline=False)
+        embed.add_field(name=f"{prefix}crashusers [website]", value="spam [website] that's will crashusers.", inline=False)
+        embed.add_field(name=f"{prefix}spam [text]", value="spam saying [text].", inline=False)
+        embed.add_field(name=f"{prefix}spamuser [text]", value="spam user dms saying [text].", inline=False)
+        embed.add_field(name=f"{prefix}text [name]", value="create text channels.", inline=False)
+        embed.add_field(name=f"{prefix}voice [name]", value="create voice channels.", inline=False)
+        embed.add_field(name=f"{prefix}setservername [title]", value="change guild's name.", inline=False)
         
-#         await ctx.message.author.send(embed=embed)
+        await ctx.message.author.send(embed=embed)
 
-#         # help 3
-#         embed = discord.Embed(colour = 0xF08080, description='Welcome to the auto commands page! here you will be able to view every single command you have access to.')
-#         embed.set_author(name='Auto Commands​',icon_url=ctx.author.avatar_url)
-#         embed.add_field(name=f"{prefix}auto mode [on/off]", value="Unable raid cmds.", inline=False)
-#         embed.add_field(name=f"{prefix}auto kick", value="kick all members in the guild.", inline=False)
-#         embed.add_field(name=f"{prefix}auto ban", value="ban all members in the server.", inline=False)
-#         embed.add_field(name=f"{prefix}auto nick [text]", value="rename all members nicknames to [text].", inline=False)
-#         embed.add_field(name=f"{prefix}auto lockdown", value="lockdown all channels.", inline=False)
-#         embed.add_field(name=f"{prefix}auto unlock", value="unlock all channels.", inline=False)
-#         embed.add_field(name=f"{prefix}auto role [role] <reason>", value="add [role] to all members.", inline=False)
+        # help 3
+        embed = discord.Embed(colour = 0xF08080, description='Welcome to the auto commands page! here you will be able to view every single command you have access to.')
+        embed.set_author(name='Auto Commands​',icon_url=ctx.author.avatar_url)
+        embed.add_field(name=f"{prefix}auto mode [on/off]", value="Unable raid cmds.", inline=False)
+        embed.add_field(name=f"{prefix}auto kick", value="kick all members in the guild.", inline=False)
+        embed.add_field(name=f"{prefix}auto ban", value="ban all members in the server.", inline=False)
+        embed.add_field(name=f"{prefix}auto nick [text]", value="rename all members nicknames to [text].", inline=False)
+        embed.add_field(name=f"{prefix}auto lockdown", value="lockdown all channels.", inline=False)
+        embed.add_field(name=f"{prefix}auto unlock", value="unlock all channels.", inline=False)
+        embed.add_field(name=f"{prefix}auto role [role] <reason>", value="add [role] to all members.", inline=False)
 
-#         await ctx.message.author.send(embed=embed)
+        await ctx.message.author.send(embed=embed)
 
 #         # help 4
 #         embed = discord.Embed(colour = discord.Colour.green(), description='Welcome to the auto commands page! here you will be able to view every single command you have access to.', timestamp=datetime.datetime.now(datetime.timezone.utc))
