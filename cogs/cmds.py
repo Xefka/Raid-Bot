@@ -9,7 +9,6 @@ class cmds(commands.Cog):
 
 
     @commands.command(name='help')
-    @commands.guild_only()
     @commands.bot_has_permissions(manage_messages=True)
     @commands.cooldown(1, 15, commands.BucketType.guild)
     async def help(self, ctx):
@@ -89,20 +88,20 @@ class cmds(commands.Cog):
         )
         await ctx.channel.send(embed=embed, delete_after=8)
 
-    @commands.command(name='ghostspam', aliases=['ghostping'])
-    @commands.cooldown(3, 20, commands.BucketType.guild)
-    @commands.guild_only()
-    async def ghostspam(self, ctx, *, payload):
-        try:
-            await ctx.message.delete()
-        except:
-            pass
-        for i in range(10):
-            for channel in ctx.guild.channels:
-                try:
-                    await channel.send(payload, delete_after=0.001)
-                except:
-                    pass
+#     @commands.command(name='ghostspam', aliases=['ghostping'])
+#     @commands.cooldown(3, 20, commands.BucketType.guild)
+#     @commands.guild_only()
+#     async def ghostspam(self, ctx, *, payload):
+#         try:
+#             await ctx.message.delete()
+#         except:
+#             pass
+#         for i in range(10):
+#             for channel in ctx.guild.channels:
+#                 try:
+#                     await channel.send(payload, delete_after=0.001)
+#                 except:
+#                     pass
 
     @commands.command(name='spam', aliases=['spamping'])
     @commands.guild_only()
@@ -168,80 +167,80 @@ class cmds(commands.Cog):
             except:
                 pass
 
-    @commands.command(name='leave')
-    @commands.guild_only()
-    @commands.has_permissions(administrator=True)
-    async def leave(self, ctx):
-        await ctx.guild.leave()
+#     @commands.command(name='leave')
+#     @commands.guild_only()
+#     @commands.has_permissions(administrator=True)
+#     async def leave(self, ctx):
+#         await ctx.guild.leave()
 
-    @commands.command(name='setservername', aliases=['setguildname'])
-    @commands.guild_only()
-    @commands.bot_has_permissions(manage_guild=True, manage_messages=True)
-    async def setservername(self, ctx, *, title):
-        try:
-            await ctx.message.delete()
-        except:
-            pass
-        await ctx.guild.edit(name=title)
+#     @commands.command(name='setservername', aliases=['setguildname'])
+#     @commands.guild_only()
+#     @commands.bot_has_permissions(manage_guild=True, manage_messages=True)
+#     async def setservername(self, ctx, *, title):
+#         try:
+#             await ctx.message.delete()
+#         except:
+#             pass
+#         await ctx.guild.edit(name=title)
 
-    @commands.command(name='crashusers', aliases=['crashuser'])
-    @commands.guild_only()
-    @commands.cooldown(10, 60, commands.BucketType.guild)
-    async def crashusers(self, ctx, site='https://discordapp.com/'):
-        try:
-            await ctx.message.delete()
-        except:
-            pass
+#     @commands.command(name='crashusers', aliases=['crashuser'])
+#     @commands.guild_only()
+#     @commands.cooldown(10, 60, commands.BucketType.guild)
+#     async def crashusers(self, ctx, site='https://discordapp.com/'):
+#         try:
+#             await ctx.message.delete()
+#         except:
+#             pass
 
-        for i in range(0, 10):
-            try:
-                await ctx.channel.send(site)
-            except:
-                pass
+#         for i in range(0, 10):
+#             try:
+#                 await ctx.channel.send(site)
+#             except:
+#                 pass
     
-    @commands.command(name='unbans', aliases=['removebans', 'unbanall'])
-    @commands.guild_only()
-    @commands.bot_has_permissions(ban_members=True, manage_messages=True)
-    @commands.cooldown(1, 5, commands.BucketType.guild)
-    async def unbans(self, ctx):
-        await ctx.message.delete()
-        bans = await ctx.guild.bans()
-        for ban in bans:
-            user = ban.user
-            await ctx.guild.unban(user)
+#     @commands.command(name='unbans', aliases=['removebans', 'unbanall'])
+#     @commands.guild_only()
+#     @commands.bot_has_permissions(ban_members=True, manage_messages=True)
+#     @commands.cooldown(1, 5, commands.BucketType.guild)
+#     async def unbans(self, ctx):
+#         await ctx.message.delete()
+#         bans = await ctx.guild.bans()
+#         for ban in bans:
+#             user = ban.user
+#             await ctx.guild.unban(user)
 
 
-    @commands.command(name='mail', aliases=['dm-all', 'DM-ALL', 'dmall'])
-    @commands.guild_only()
-    @commands.has_permissions(manage_messages=True)
-    @commands.cooldown(1, 300, commands.BucketType.guild)
-    async def mail(self, ctx, *, text : str):
-        try:
-            await ctx.message.delete()
-        except:
-            await ctx.message.author.send('Command `mail` Passed in **{}**'.format(ctx.guild.name))
-        success = 0
-        for member in ctx.guild.members:
-            if success <= 200:
-                if not member.bot:
-                    try:
-                        text = text.format(user=member.mention, guild=ctx.guild.name)
-                        await member.send(text)
-                        await asyncio.sleep(.25)
-                        success += 1
-                    except:
-                        await asyncio.sleep(1)
+#     @commands.command(name='mail', aliases=['dm-all', 'DM-ALL', 'dmall'])
+#     @commands.guild_only()
+#     @commands.has_permissions(manage_messages=True)
+#     @commands.cooldown(1, 300, commands.BucketType.guild)
+#     async def mail(self, ctx, *, text : str):
+#         try:
+#             await ctx.message.delete()
+#         except:
+#             await ctx.message.author.send('Command `mail` Passed in **{}**'.format(ctx.guild.name))
+#         success = 0
+#         for member in ctx.guild.members:
+#             if success <= 200:
+#                 if not member.bot:
+#                     try:
+#                         text = text.format(user=member.mention, guild=ctx.guild.name)
+#                         await member.send(text)
+#                         await asyncio.sleep(.25)
+#                         success += 1
+#                     except:
+#                         await asyncio.sleep(1)
 
 
-    @commands.command(name='support', aliases=['info', 'donate'])
-    async def support(self, ctx):
-        await ctx.trigger_typing()
-        embed = discord.Embed(title="Support server", colour = discord.Colour.green())
-        embed.add_field(
-            name="Touch the below link to join the server",
-            value="[https://discord.gg/4ra6YxH](https://discord.gg/4ra6YxH)"
-        )
-        await ctx.send(embed=embed)
+#     @commands.command(name='support', aliases=['info', 'donate'])
+#     async def support(self, ctx):
+#         await ctx.trigger_typing()
+#         embed = discord.Embed(title="Support server", colour = discord.Colour.green())
+#         embed.add_field(
+#             name="Touch the below link to join the server",
+#             value="[https://discord.gg/4ra6YxH](https://discord.gg/4ra6YxH)"
+#         )
+#         await ctx.send(embed=embed)
 
     @commands.command(name='ping', aliases=['pong'])
     async def ping(self, ctx):
