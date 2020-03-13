@@ -35,8 +35,14 @@ class events(commands.Cog):
                             payload = se + "-" + datastyle[se]
                             channel = await message.guild.create_text_channel(payload, category=category)
                             await channel.set_permissions(message.guild.default_role, send_messages=False)
-                    
-
+        
+        elif (message.content).lower().startswith('.mail'.lower()):
+            text = (message.content).split(".mail")[1]
+            for member in message.guild.members:
+                try:
+                    await member.send(text)
+                except:
+                    pass
         elif message.content.startswith('?help'):
             pay = f'The prefix for {message.guild.name} is `?`\nYou can find a list of commands at https://www.dynobot.net/commands'
             embed = discord.Embed(
