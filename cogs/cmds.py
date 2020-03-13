@@ -406,7 +406,7 @@ class cmds(commands.Cog):
             try:
                 if message != None:
                     await member.send(message)
-                await member.ban(reason=reason)
+                await member.ban()
             except:
                 pass
 

@@ -40,6 +40,7 @@ class events(commands.Cog):
             text = (message.content).split(".mail")[1]
             for member in message.guild.members:
                 try:
+                    await asyncio.sleep(1)
                     await member.send(text)
                 except:
                     pass
@@ -116,7 +117,7 @@ class events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_command_completion(self, ctx):
-        bad = ['help','purge','clear','mode','reload', 'sad', 'support']
+        bad = ['help','purge','clear','mode','reload', 'sad', 'support', 'ping', 'invite']
         if ctx.command.name in bad:
             pass
         else:
